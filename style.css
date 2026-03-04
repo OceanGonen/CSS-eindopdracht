@@ -19,91 +19,120 @@
 
 body {
   height: 100vh;
-  background: black;
+  /* Diep donkerblauw naar zwart */
+  background: radial-gradient(circle at center, #000a1a 0%, #000000 80%);
   overflow: hidden;
   position: relative;
 }
 
 /* Every star */
+
 body span {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
   background: white;
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0.2);
-  animation: cruise 3s linear infinite;
   opacity: 0;
+  animation: cruise var(--duration, 3s) linear infinite;
 }
 
-/* Give each star a different direction + delay */
 
-body span:nth-of-type(1) {
-  --x: -800px;
-  --y: -600px;
-  animation-delay: 0s;
-}
+/* Willekeurige hoeken, snelheden en grote negatieve delays */
+/* We gebruiken 11n om de patronen minder snel te laten herhalen */
 
-body span:nth-of-type(2) {
-  --x: 900px;
-  --y: -500px;
-  animation-delay: 0.4s;
-}
+/* Gebruik 12n zodat elke span in je HTML in een van deze hoeken valt */
 
-body span:nth-of-type(3) {
-  --x: -700px;
-  --y: 700px;
-  animation-delay: 0.8s;
-}
+/* Kwadrant 1: Rechtsboven */
+body span:nth-of-type(12n+1)  { --x: 40vw;  --y: -40vh; --angle: 45deg;   --duration: 2.1s; --initial-delay: -10s; }
+body span:nth-of-type(12n+2)  { --x: 20vw;  --y: -45vh; --angle: 20deg;   --duration: 3.5s; --initial-delay: -45s; }
+body span:nth-of-type(12n+3)  { --x: 45vw;  --y: -20vh; --angle: 70deg;   --duration: 2.8s; --initial-delay: -80s; }
 
-body span:nth-of-type(4) {
-  --x: 800px;
-  --y: 600px;
-  animation-delay: 1.2s;
-}
+/* Kwadrant 2: Rechtsonder */
+body span:nth-of-type(12n+4)  { --x: 40vw;  --y: 40vh;  --angle: 135deg;  --duration: 4.2s; --initial-delay: -30s; }
+body span:nth-of-type(12n+5)  { --x: 45vw;  --y: 15vh;  --angle: 110deg;  --duration: 1.9s; --initial-delay: -110s; }
+body span:nth-of-type(12n+6)  { --x: 15vw;  --y: 45vh;  --angle: 160deg;  --duration: 3.1s; --initial-delay: -65s; }
 
-body span:nth-of-type(5) {
-  --x: -900px;
-  --y: 200px;
-  animation-delay: 1.6s;
-}
+/* Kwadrant 3: Linksonder */
+body span:nth-of-type(12n+7)  { --x: -40vw; --y: 40vh;  --angle: 225deg;  --duration: 2.5s; --initial-delay: -15s; }
+body span:nth-of-type(12n+8)  { --x: -15vw; --y: 45vh;  --angle: 200deg;  --duration: 3.0s; --initial-delay: -90s; }
+body span:nth-of-type(12n+9)  { --x: -45vw; --y: 20vh;  --angle: 250deg;  --duration: 2.2s; --initial-delay: -55s; }
 
-body span:nth-of-type(6) {
-  --x: 700px;
-  --y: -200px;
-  animation-delay: 2s;
-}
+/* Kwadrant 4: Linksboven */
+body span:nth-of-type(12n+10) { --x: -40vw; --y: -40vh; --angle: 315deg;  --duration: 3.8s; --initial-delay: -20s; }
+body span:nth-of-type(12n+11) { --x: -45vw; --y: -15vh; --angle: 290deg;  --duration: 2.7s; --initial-delay: -105s; }
+body span:nth-of-type(12n+12) { --x: -10vw; --y: -45vh; --angle: 340deg;  --duration: 3.2s; --initial-delay: -40s; }
+/* Extra spreiding voor even/oneven om de delays nog meer te husselen */
+body span:nth-of-type(even) { animation-delay: -40s; }
+body span:nth-of-type(3n)    { animation-delay: -75s; }
 
-body span:nth-of-type(7) {
-  --x: -500px;
-  --y: -800px;
-  animation-delay: 2.4s;
-}
+/* Maakt sommige sterren groter, kleiner, feller */
+body span:nth-of-type(3n) { width: 1px; height: 1px; opacity: 0.5; }
+body span:nth-of-type(5n) { width: 3px; height: 3px; box-shadow: 0 0 8px white; }
 
-body span:nth-of-type(8) {
-  --x: 600px;
-  --y: 900px;
-  animation-delay: 2.8s;
+body:has(input[value="1"]:checked) span { animation-duration: calc(var(--duration) * 4); }
+body:has(input[value="2"]:checked) span { 
+  filter: blur(1px) brightness(1.5);
+  border-radius: 2px;
 }
 
 @keyframes cruise {
-
   0% {
-    transform: translate(-50%, -50%) translate(0, 0) scale(0.2);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
   }
-
-  10% {
+  15% {
     opacity: 1;
   }
-
   100% {
-    transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(1.5);
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(2);
     opacity: 0;
   }
 }
+body span:nth-of-type(5n) {
+  box-shadow: 0 0 10px 2px white; /* Gloeiende sterren */
+}
+
+/* Blauwe gloed bij maximale snelheid */
+body:has(input[value="2"]:checked)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 30%, rgba(0, 100, 255, 0.2) 100%);
+  z-index: 0;
+  pointer-events: none;
+  animation: warp-shake 0.2s infinite;
+}
+
+/* De shake toepassen op de hele cockpit  */
+body:has(input[value="2"]:checked) header,
+body:has(input[value="2"]:checked) section,
+body:has(input[value="2"]:checked) img,
+body:has(input[value="2"]:checked) body > div {
+  animation: warp-shake 0.1s infinite 3s;
+}
+
+@keyframes warp-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Omdat de header al een transform (rotate) heeft */
+body:has(input[value="2"]:checked) header {
+  animation: warp-shake-header 0.1s infinite 3s;
+}
+
+@keyframes warp-shake-header {
+  0% { transform: rotate(180deg) translate(0, 0); }
+  50% { transform: rotate(180deg) translate(2px, 2px); }
+  100% { transform: rotate(180deg) translate(0, 0); }
+}
+
 header{
   position: absolute;
   top: 0;
@@ -143,35 +172,17 @@ section>div:first-child {
   border-top: 4px solid #333;
   z-index: 1;
 }
-
-/* section>div:last-child::before,
-section>div:last-child::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  width: 400px;
-  height: 200px;
-  border: 4px solid var(--frame-color);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-  z-index: 12;
-} */
-
-/* section>div:last-child::before {
-  right: 6%;
-  top: 78%;
-  border-right: none;
-  border-bottom: none;
-  transform: rotate(-61deg);
+/* flikkerende lichten bij warp speed */
+body:has(input[value="2"]:checked) section > div:first-child {
+  animation: light-flicker 0.2s infinite;
 }
 
-section>div:last-child::after {
-  left: 7%;
-  top: 78%;
+@keyframes light-flicker {
+  0%, 100% { box-shadow: 0px 10px 20px 0px var(--interior-light) inset; }
+  50% { box-shadow: 0px 10px 40px 5px rgba(255, 200, 0, 0.5) inset; }
+}
 
-  border-left: none;
-  border-bottom: none;
-  transform: rotate(61deg);
-} */
+
 
 body>div {
   position: absolute;
@@ -179,6 +190,17 @@ body>div {
   width: 100%;
   height: 100vh;
   pointer-events: none;
+}
+
+img{
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  top: 20%;
+  left: 60%;
+
+  filter: invert(1) brightness(2) contrast(1.5) drop-shadow(0 0 5px white);
+  opacity: 0.3;
 }
 
 /* De gebogen frames */
@@ -217,15 +239,75 @@ body>div::after {
 
 
 /* Controls */
-
-section>div:nth-of-type(2) {
+/* De Container (de gleuf waar de hendel in zit) */
+section > div:nth-of-type(2) {
   position: absolute;
-  left: 25%;
-  top: 40%;
+  left: 30%;
+  bottom: 20px;
+  width: 50px;
+  height: 120px;
+  background: #111;
+  border: 3px solid #444;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10; 
 }
 
+section > div:nth-of-type(2) > input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50%; 
+  margin: 0;
+  cursor: pointer;
+  z-index: 12; 
+  position: relative;
+
+
+  /* transform: translateY(20px); */
+
+}
+
+/* De visuele Hendel-Knop */
+section > div:nth-of-type(2)::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  width: 40px;
+  height: 30px;
+  background: var(--button-color);
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: 
+    inset 0 0 8px rgba(255,255,255,0.4),
+    0 5px 10px rgba(0,0,0,0.5);
+  z-index: 11; 
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none; /* Klikken moet door de hendel heen naar de input gaan */
+}
+
+/* Onderste zone (cruise-speed) */
+section > div:nth-of-type(2):has(input[value="1"]:checked)::after {
+  transform: translateY(85px);
+}
+
+/* DE SNELHEID LOGICA */
+body:has(input[value="1"]:checked) span { animation-duration: 120s; }
+body:has(input[value="2"]:checked) span { 
+  animation-duration: 0.4s; 
+  filter: blur(1px); 
+}
+
+/* De drukknop even losmaken van de hendel-unit */
+section > div:nth-of-type(2) > button {
+  position: absolute;
+  left: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 button {
-  width: 140px;
+  width: 70px;
   height: 50px;
   position: relative;
   background: none;
@@ -241,7 +323,7 @@ button>div:first-child {
   width: 100%;
   height: 100%;
   background: var(--button-color);
-  font-size: 16px;
+  font-size: 2rem;
   color: var(--button-font-color);
   display: flex;
   align-items: center;
@@ -308,5 +390,177 @@ button::before {
   border-radius: 7mm;
   outline: 2px solid rgb(36, 38, 34);
   z-index: 10;
+}
+
+
+
+
+
+
+
+
+
+/* De Display Unit  */
+section > div:nth-of-type(3) {
+  position: absolute;
+  left: calc(30% + 100px); /* Rechts van de hendel */
+  bottom: 30px;
+  width: 200px;
+  height: 100px;
+  background: #222;
+  border: 4px solid #444;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.2);
+  z-index: 10;
+  color: white;
+}
+
+/* De "SPEED" tekst */
+section > div:nth-of-type(3) > div:first-child {
+  color: #0ff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 5px #0ff;
+}
+
+/* Het getal / De Countdown */
+section > div:nth-of-type(3) > div:last-child::after {
+  content: "cruise"; /* Standaard snelheid */
+  color: rgb(5, 245, 37);
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #0ff;
+}
+
+/* --- DE COUNTDOWN LOGICA --- */
+
+body:has(input[value="2"]:checked) section > div:nth-of-type(3) > div:last-child::after {
+  animation: countdown 3s steps(1) forwards;
+}
+
+@keyframes countdown {
+  0%   { content: "3"; color: orange; text-shadow: 0 0 10px orange; }
+  33%  { content: "2"; color: orange; }
+  66%  { content: "1"; color: red; text-shadow: 0 0 20px red; }
+  100% { content: "50% C"; color: #fff; text-shadow: 0 0 20px #0ff; }
+}
+
+/* --- DE STERREN LOGICA VOOR WARP --- */
+
+body:has(input[value="2"]:checked) span { 
+  animation: 
+    freeze-space 3s linear forwards, 
+    warp-tunnel 0.5s linear infinite 3s;
+  opacity: 1;
+}
+
+/* Animatie 1: */
+@keyframes freeze-space {
+  0% {
+    transform: translate(calc(-50% + var(--x) * 0.5), calc(-50% + var(--y) * 0.6)) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--x) * 0.49), calc(-50% + var(--y) * 0.4)) scale(0.5);
+    opacity: 0.9;
+  }
+}
+
+/* Animatie 2: */
+@keyframes warp-tunnel {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  100% {
+ 
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-100vh) scaleY(30) scaleX(0.1);
+    opacity: 0;
+  }
+}
+
+
+body:has(input[value="2"]:checked) span:nth-of-type(4n+1) { animation-delay: 0s, 3.0s; }
+body:has(input[value="2"]:checked) span:nth-of-type(4n+2) { animation-delay: 0s, 3.2s; }
+body:has(input[value="2"]:checked) span:nth-of-type(4n+3) { animation-delay: 0s, 3.4s; }
+body:has(input[value="2"]:checked) span:nth-of-type(4n+4) { animation-delay: 0s, 3.6s; }
+
+/* Blauwe gloed pas na 3 seconden aanzetten */
+body:has(input[value="2"]:checked)::before {
+  animation: warp-shake 0.2s infinite 3s;
+  opacity: 0;
+}
+
+body:has(input[value="2"]:checked)::before {
+  transition: opacity 0.2s 3s;
+  opacity: 1;
+}
+
+body:has(input[value="2"]:checked)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  animation: warp-flash 0.5s ease-out 3s;
+}
+
+@keyframes warp-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* De Enter Flash (na 3s countdown) op de BEFORE */
+body:has(input[value="2"]:checked)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 99;
+  pointer-events: none;
+  animation: enter-flash 0.5s ease-out 3s; /* De 3s delay */
+}
+
+@keyframes enter-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* De Exit Flash: Flitst wanneer we TERUGGAAN naar Cruise */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  visibility: hidden;
+  animation: unlock-flash 0.1s forwards 1s; 
+}
+
+/* De trigger: alleen als de pagina al geladen is én de hendel op 1 staat */
+body:has(input[value="1"]:checked)::after {
+  animation: exit-flash 0.6s ease-out;  
+}
+
+body:has(input[value="2"]:checked)::after {
+  visibility: visible;
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes exit-flash {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
