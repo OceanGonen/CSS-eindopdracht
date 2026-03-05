@@ -11,6 +11,12 @@
   --button-font-color: white;
 }
 
+@font-face {
+  font-family: 'SpaceFont'; 
+  src: url('fonts/cybersky-trial-font/CyberskyFreeTrial-GOryA.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   margin: 0;
@@ -25,9 +31,20 @@ body {
   position: relative;
 }
 
-/* Every star */
+h1{
+  color: white;
+  transform: rotate(180deg);
+  text-align: center;
+  font-family: "SpaceFont";
+  padding: 0.2rem;
+}
 
-body span {
+
+
+
+/* Every star ////////////////////////////////////////////////////////////////////////////// */
+
+body>span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -40,100 +57,87 @@ body span {
 }
 
 
-/* Willekeurige hoeken, snelheden en grote negatieve delays */
-/* We gebruiken 11n om de patronen minder snel te laten herhalen */
-
-/* Gebruik 12n zodat elke span in je HTML in een van deze hoeken valt */
+/* hoeken, snelheden en grote negatieve delays */
 
 /* Kwadrant 1: Rechtsboven */
-body span:nth-of-type(12n+1)  { --x: 40vw;  --y: -40vh; --angle: 45deg;   --duration: 2.1s; --initial-delay: -10s; }
-body span:nth-of-type(12n+2)  { --x: 20vw;  --y: -45vh; --angle: 20deg;   --duration: 3.5s; --initial-delay: -45s; }
-body span:nth-of-type(12n+3)  { --x: 45vw;  --y: -20vh; --angle: 70deg;   --duration: 2.8s; --initial-delay: -80s; }
+body>span:nth-of-type(12n+1) { --x: 40vw  --y: -40vh; --angle: 45deg; --duration: 2.1s; --initial-delay: -10s;}
+body>span:nth-of-type(12n+2) { --x: 20vw; --y: -45vh; --angle: 20deg; --duration: 3.5s; --initial-delay: -45s;}
+body>span:nth-of-type(12n+3) { --x: 45vw; --y: -20vh; --angle: 70deg; --duration: 2.8s; --initial-delay: -80s;}
 
 /* Kwadrant 2: Rechtsonder */
-body span:nth-of-type(12n+4)  { --x: 40vw;  --y: 40vh;  --angle: 135deg;  --duration: 4.2s; --initial-delay: -30s; }
-body span:nth-of-type(12n+5)  { --x: 45vw;  --y: 15vh;  --angle: 110deg;  --duration: 1.9s; --initial-delay: -110s; }
-body span:nth-of-type(12n+6)  { --x: 15vw;  --y: 45vh;  --angle: 160deg;  --duration: 3.1s; --initial-delay: -65s; }
+body>span:nth-of-type(12n+4) { --x: 40vw; --y: 40vh; --angle: 135deg; --duration: 4.2s; --initial-delay: -30s;}
+body>span:nth-of-type(12n+5) { --x: 45vw; --y: 15vh; --angle: 110deg; --duration: 1.9s; --initial-delay: -110s;}
+body>span:nth-of-type(12n+6) { --x: 15vw; --y: 45vh; --angle: 160deg; --duration: 3.1s; --initial-delay: -65s;}
 
 /* Kwadrant 3: Linksonder */
-body span:nth-of-type(12n+7)  { --x: -40vw; --y: 40vh;  --angle: 225deg;  --duration: 2.5s; --initial-delay: -15s; }
-body span:nth-of-type(12n+8)  { --x: -15vw; --y: 45vh;  --angle: 200deg;  --duration: 3.0s; --initial-delay: -90s; }
-body span:nth-of-type(12n+9)  { --x: -45vw; --y: 20vh;  --angle: 250deg;  --duration: 2.2s; --initial-delay: -55s; }
+body>span:nth-of-type(12n+7) { --x: -40vw; --y: 40vh; --angle: 225deg; --duration: 2.5s; --initial-delay: -15s;}
+body>span:nth-of-type(12n+8) { --x: -15vw; --y: 45vh; --angle: 200deg; --duration: 3.0s; --initial-delay: -90s;}
+body>span:nth-of-type(12n+9) { --x: -45vw; --y: 20vh; --angle: 250deg; --duration: 2.2s; --initial-delay: -55s;}
 
 /* Kwadrant 4: Linksboven */
-body span:nth-of-type(12n+10) { --x: -40vw; --y: -40vh; --angle: 315deg;  --duration: 3.8s; --initial-delay: -20s; }
-body span:nth-of-type(12n+11) { --x: -45vw; --y: -15vh; --angle: 290deg;  --duration: 2.7s; --initial-delay: -105s; }
-body span:nth-of-type(12n+12) { --x: -10vw; --y: -45vh; --angle: 340deg;  --duration: 3.2s; --initial-delay: -40s; }
+body>span:nth-of-type(12n+10) { --x: -40vw; --y: -40vh; --angle: 315deg; --duration: 3.8s; --initial-delay: -20s;}
+body>span:nth-of-type(12n+11) { --x: -45vw; --y: -15vh; --angle: 290deg; --duration: 2.7s; --initial-delay: -105s;}
+body>span:nth-of-type(12n+12) { --x: -10vw; --y: -45vh; --angle: 340deg; --duration: 3.2s; --initial-delay: -40s;}
+
 /* Extra spreiding voor even/oneven om de delays nog meer te husselen */
-body span:nth-of-type(even) { animation-delay: -40s; }
-body span:nth-of-type(3n)    { animation-delay: -75s; }
+body>span:nth-of-type(even) {
+  animation-delay: -40s;
+}
+body>span:nth-of-type(3n) {
+  animation-delay: -75s;
+}
 
 /* Maakt sommige sterren groter, kleiner, feller */
-body span:nth-of-type(3n) { width: 1px; height: 1px; opacity: 0.5; }
-body span:nth-of-type(5n) { width: 3px; height: 3px; box-shadow: 0 0 8px white; }
-
-body:has(input[value="1"]:checked) span { animation-duration: calc(var(--duration) * 4); }
-body:has(input[value="2"]:checked) span { 
-  filter: blur(1px) brightness(1.5);
-  border-radius: 2px;
+body>span:nth-of-type(3n) {
+  width: 1px;
+  height: 1px;
+  opacity: 0.5;
 }
+body>span:nth-of-type(5n) {
+  box-shadow: 0 0 10px 2px white;
+  /* Gloeiende sterren */
+}
+
+body>span:nth-of-type(5n) {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 8px white;
+}
+
 
 @keyframes cruise {
   0% {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
   }
+
   15% {
     opacity: 1;
   }
+
   100% {
     transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(2);
     opacity: 0;
   }
 }
-body span:nth-of-type(5n) {
-  box-shadow: 0 0 10px 2px white; /* Gloeiende sterren */
-}
 
-/* Blauwe gloed bij maximale snelheid */
-body:has(input[value="2"]:checked)::before {
-  content: "";
-  position: absolute;
+
+
+/* Ship styling //////////////////////////////////////////////////////////////////////// */
+
+/* master div */
+body>div:first-of-type {
+  position: fixed;
   inset: 0;
-  background: radial-gradient(circle, transparent 30%, rgba(0, 100, 255, 0.2) 100%);
-  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
   pointer-events: none;
-  animation: warp-shake 0.2s infinite;
 }
 
-/* De shake toepassen op de hele cockpit  */
-body:has(input[value="2"]:checked) header,
-body:has(input[value="2"]:checked) section,
-body:has(input[value="2"]:checked) img,
-body:has(input[value="2"]:checked) body > div {
-  animation: warp-shake 0.1s infinite 3s;
-}
-
-@keyframes warp-shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(2px, -2px); }
-  50% { transform: translate(-2px, 2px); }
-  75% { transform: translate(-2px, -2px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* Omdat de header al een transform (rotate) heeft */
-body:has(input[value="2"]:checked) header {
-  animation: warp-shake-header 0.1s infinite 3s;
-}
-
-@keyframes warp-shake-header {
-  0% { transform: rotate(180deg) translate(0, 0); }
-  50% { transform: rotate(180deg) translate(2px, 2px); }
-  100% { transform: rotate(180deg) translate(0, 0); }
-}
-
-header{
+/* top exteriorship */
+header {
   position: absolute;
   top: 0;
   left: 0;
@@ -146,7 +150,8 @@ header{
   z-index: 1;
 }
 
-section {
+/* bottom exterior ship */
+body>div>section {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -156,8 +161,18 @@ section {
   clip-path: polygon(0% 100%, 0% 40%, 20% 0%, 80% 0%, 100% 40%, 100% 100%);
   border-top: 4px solid #333;
   z-index: 1;
+
 }
 
+
+/* Zorgt dat button en hendel klikbaar zijn */
+section {
+  pointer-events: auto;
+  z-index: 15;
+  /* Hoger dan de frames */ 
+}
+
+/* controlpanel backdrop */
 section>div:first-child {
   position: absolute;
   bottom: 0;
@@ -172,17 +187,18 @@ section>div:first-child {
   border-top: 4px solid #333;
   z-index: 1;
 }
-/* flikkerende lichten bij warp speed */
-body:has(input[value="2"]:checked) section > div:first-child {
-  animation: light-flicker 0.2s infinite;
+
+/* controlpanel container */
+section>div:first-child>section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  padding-top: 2vh;
+
 }
-
-@keyframes light-flicker {
-  0%, 100% { box-shadow: 0px 10px 20px 0px var(--interior-light) inset; }
-  50% { box-shadow: 0px 10px 40px 5px rgba(255, 200, 0, 0.5) inset; }
-}
-
-
 
 body>div {
   position: absolute;
@@ -190,9 +206,11 @@ body>div {
   width: 100%;
   height: 100vh;
   pointer-events: none;
+
 }
 
-img{
+/* crack in windshield */
+img {
   height: 300px;
   width: 300px;
   position: absolute;
@@ -203,109 +221,53 @@ img{
   opacity: 0.3;
 }
 
+
 /* De gebogen frames */
-body>div::before,
-body>div::after {
-  content: "";
+/*  De tweede div in de master container */
+body>div:first-of-type>div:first-of-type {
   position: absolute;
-  bottom: -2px;
-  width: 40vw;
-  height: 120vh;
-  border: 4px solid var(--frame-color);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-}
-
-/* Linker frame: Begint links van het midden, buigt naar buiten */
-body>div::before {
-  right: -21%;
-  top: -44%;
-  border-radius: 100% 0 0 0;
-  border-right: none;
-  border-bottom: none;
+  inset: 0;
   z-index: 2;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5vh;
+    width: 45vw;
+    height: 130vh;
+    border: 6px solid var(--frame-color);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    top: -15vh;
+  }
+
+  /* Linker frame */
+  &::before {
+    right: -26vw;
+    top: -54vh;
+    border-radius: 100% 0 0 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  /* Rechter frame */
+  &::after {
+    left: -26vw;
+    top: -54vh;
+    border-radius: 0 100% 0 0;
+    border-left: none;
+    border-bottom: none;
+  }
 }
 
-/* Rechter frame: Begint rechts van het midden, buigt naar buiten */
-body>div::after {
-  left: -20%;
-  top: -44%;
-
-  border-radius: 0 100% 0 0;
-  border-left: none;
-  border-bottom: none;
-  z-index: 2;
-
-}
 
 
-/* Controls */
-/* De Container (de gleuf waar de hendel in zit) */
-section > div:nth-of-type(2) {
-  position: absolute;
-  left: 30%;
-  bottom: 20px;
-  width: 50px;
-  height: 120px;
-  background: #111;
-  border: 3px solid #444;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10; 
-}
-
-section > div:nth-of-type(2) > input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  height: 50%; 
-  margin: 0;
-  cursor: pointer;
-  z-index: 12; 
-  position: relative;
 
 
-  /* transform: translateY(20px); */
+/* Contolpanel//////////////////////////////////////////////////////////////////////////////////////// */
 
-}
-
-/* De visuele Hendel-Knop */
-section > div:nth-of-type(2)::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  width: 40px;
-  height: 30px;
-  background: var(--button-color);
-  border: 2px solid #000;
-  border-radius: 5px;
-  box-shadow: 
-    inset 0 0 8px rgba(255,255,255,0.4),
-    0 5px 10px rgba(0,0,0,0.5);
-  z-index: 11; 
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none; /* Klikken moet door de hendel heen naar de input gaan */
-}
-
-/* Onderste zone (cruise-speed) */
-section > div:nth-of-type(2):has(input[value="1"]:checked)::after {
-  transform: translateY(85px);
-}
-
-/* DE SNELHEID LOGICA */
-body:has(input[value="1"]:checked) span { animation-duration: 120s; }
-body:has(input[value="2"]:checked) span { 
-  animation-duration: 0.4s; 
-  filter: blur(1px); 
-}
-
-/* De drukknop even losmaken van de hendel-unit */
-section > div:nth-of-type(2) > button {
-  position: absolute;
-  left: -100px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+/* Windshield wiper button */
 button {
   width: 70px;
   height: 50px;
@@ -319,6 +281,7 @@ button {
 
 }
 
+/* button text */
 button>div:first-child {
   width: 100%;
   height: 100%;
@@ -337,6 +300,7 @@ button>div:first-child {
 
 }
 
+/* button side */
 button>div:last-child {
   position: absolute;
   width: 100%;
@@ -349,29 +313,7 @@ button>div:last-child {
   z-index: 10;
 }
 
-button>div:last-child::before {
-  position: absolute;
-  content: "";
-  width: 2px;
-  height: 9px;
-  background: rgb(36, 38, 34);
-  bottom: 0;
-  left: 15%;
-  z-index: 11;
 
-}
-
-button>div:last-child::after {
-  position: absolute;
-  content: "";
-  width: 2px;
-  height: 9px;
-  background: rgb(36, 38, 34);
-  bottom: 0;
-  left: 85%;
-  z-index: 11;
-
-}
 
 button:active div:first-child {
   transform: translateY(10px);
@@ -379,6 +321,7 @@ button:active div:first-child {
 
 }
 
+/* button bottom */
 button::before {
   position: absolute;
   content: "";
@@ -392,6 +335,68 @@ button::before {
   z-index: 10;
 }
 
+/* De Container van de hendel */
+section>div:first-child>section>div:nth-of-type(1) {
+  width: 50px;
+  height: 120px;
+  background: #111;
+  border: 3px solid #444;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 10;
+
+  /* De visuele Hendel-Knop (het rode blokje) */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 30px;
+    background: var(--button-color);
+    border: 2px solid #000;
+    border-radius: 5px;
+    box-shadow:
+      inset 0 0 8px rgba(255, 255, 255, 0.4),
+      0 5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 11;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  /* De Radio Buttons  */
+  &>input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 12;
+    position: relative;
+  }
+
+  /*schuif de hendel omlaag */
+  &:has(input[value="1"]:checked)::after {
+    transform: translateY(75px);
+  }
+}
+
+/* --- DE SNELHEID LOGICA (STERREN) --- */
+
+/* Cruise Speed (Sloom) */
+body:has(input[value="1"]:checked)>span {
+  animation-duration: 120s;
+}
+
+/* Warp Speed (Snel + Blur) */
+body:has(input[value="2"]:checked)>span {
+  animation-duration: 0.4s;
+  filter: blur(1px);
+}
 
 
 
@@ -400,13 +405,10 @@ button::before {
 
 
 
-/* De Display Unit  */
-section > div:nth-of-type(3) {
-  position: absolute;
-  left: calc(30% + 100px); /* Rechts van de hendel */
-  bottom: 30px;
-  width: 200px;
-  height: 100px;
+/* De Display Unit (het schermpje) */
+section > div:first-child > section > div:nth-of-type(2) {
+  width: 180px;
+  height: 80px;
   background: #222;
   border: 4px solid #444;
   border-radius: 5px;
@@ -416,56 +418,168 @@ section > div:nth-of-type(3) {
   justify-content: center;
   font-family: 'Courier New', Courier, monospace;
   box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.2);
-  z-index: 10;
   color: white;
+  flex-shrink: 0;
+
+  /* De "SPEED" tekst */
+  & > div:first-child {
+    color: #0ff;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px #0ff;
+  }
+
+  /* Het getal / De Countdown container */
+  & > div:last-child::after {
+    content: "cruise";
+    color: rgb(5, 245, 37);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #0ff;
+  }
 }
 
-/* De "SPEED" tekst */
-section > div:nth-of-type(3) > div:first-child {
-  color: #0ff;
-  font-size: 10px;
-  letter-spacing: 2px;
-  margin-bottom: 5px;
-  text-shadow: 0 0 5px #0ff;
-}
+/* --- DE COUNTDOWN & WARP LOGICA --- */
 
-/* Het getal / De Countdown */
-section > div:nth-of-type(3) > div:last-child::after {
-  content: "cruise"; /* Standaard snelheid */
-  color: rgb(5, 245, 37);
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px #0ff;
-}
-
-/* --- DE COUNTDOWN LOGICA --- */
-
-body:has(input[value="2"]:checked) section > div:nth-of-type(3) > div:last-child::after {
+/* Countdown trigger op het scherm */
+body:has(input[value="2"]:checked) section > div:first-child > section > div:nth-of-type(2) > div:last-child::after {
   animation: countdown 3s steps(1) forwards;
 }
 
-@keyframes countdown {
-  0%   { content: "3"; color: orange; text-shadow: 0 0 10px orange; }
-  33%  { content: "2"; color: orange; }
-  66%  { content: "1"; color: red; text-shadow: 0 0 20px red; }
-  100% { content: "50% C"; color: #fff; text-shadow: 0 0 20px #0ff; }
-}
-
-/* --- DE STERREN LOGICA VOOR WARP --- */
-
-body:has(input[value="2"]:checked) span { 
-  animation: 
-    freeze-space 3s linear forwards, 
+/* De Sterren Warp  */
+body:has(input[value="2"]:checked)>span {
+  animation:
+    FOV 3s linear forwards,
     warp-tunnel 0.5s linear infinite 3s;
   opacity: 1;
 }
 
-/* Animatie 1: */
-@keyframes freeze-space {
+/* Blauwe gloed, flitsen en shakes triggeren op de radio button status */
+body:has(input[value="2"]:checked)::before {
+  animation: warp-shake 0.2s infinite 3s;
+  opacity: 1;
+  transition: opacity 0.2s 3s;
+}
+
+/* De flits-animatie op de body::after of ::before */
+body:has(input[value="2"]:checked)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  animation: warp-flash 0.5s ease-out 3s;
+}
+
+/* Blauwe gloed bij maximale snelheid */
+body:has(input[value="2"]:checked)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 30%, rgba(0, 100, 255, 0.2) 100%);
+  z-index: 0;
+  pointer-events: none;
+  animation: warp-shake 0.2s infinite;
+}
+
+/* warp animaties */
+
+body:has(input[value="2"]:checked) section>div:first-child {
+  animation: light-flicker 0.2s infinite;
+}
+
+@keyframes light-flicker {
+  0%,
+  100% {
+    box-shadow: 0px 10px 20px 0px var(--interior-light) inset;
+  }
+
+  50% {
+    box-shadow: 0px 10px 40px 5px rgba(255, 200, 0, 0.5) inset;
+  }
+}
+
+
+@keyframes countdown {
+  0% { content: "3"; color: orange; text-shadow: 0 0 10px orange; }
+  33% { content: "2"; color: orange; }
+  66% { content: "1"; color: red; text-shadow: 0 0 20px red; }
+  100% { content: "50% C"; color: #fff; text-shadow: 0 0 20px #0ff; }
+}
+
+@keyframes warp-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* De shake toepassen op de hele cockpit  */
+body:has(input[value="2"]:checked) header,
+body:has(input[value="2"]:checked) section,
+body:has(input[value="2"]:checked) img,
+body:has(input[value="2"]:checked) body>div {
+  animation: warp-shake 0.1s infinite 3s;
+}
+
+@keyframes warp-shake {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(2px, -2px);
+  }
+
+  50% {
+    transform: translate(-2px, 2px);
+  }
+
+  75% {
+    transform: translate(-2px, -2px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Omdat de header al een transform (rotate) heeft */
+body:has(input[value="2"]:checked) header {
+  animation: warp-shake-header 0.1s infinite 3s;
+}
+
+@keyframes warp-shake-header {
+  0% {
+    transform: rotate(180deg) translate(0, 0);
+  }
+
+  50% {
+    transform: rotate(180deg) translate(2px, 2px);
+  }
+
+  100% {
+    transform: rotate(180deg) translate(0, 0);
+  }
+}
+
+
+/* FOV en warp tunnel + fuel gauge blink (per ongeluk)*/
+body:has(input[value="2"]:checked) span {
+  animation:
+    FOV 3s linear forwards,
+    warp-tunnel 0.5s linear infinite 3s;
+  opacity: 1;
+}
+
+ /*Animatie 1 */ 
+@keyframes FOV {
   0% {
     transform: translate(calc(-50% + var(--x) * 0.5), calc(-50% + var(--y) * 0.6)) scale(0.8);
     opacity: 1;
   }
+
   100% {
     transform: translate(calc(-50% + var(--x) * 0.49), calc(-50% + var(--y) * 0.4)) scale(0.5);
     opacity: 0.9;
@@ -478,47 +592,34 @@ body:has(input[value="2"]:checked) span {
     transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scaleY(1);
     opacity: 1;
   }
+
   100% {
- 
+
     transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-100vh) scaleY(30) scaleX(0.1);
     opacity: 0;
   }
 }
 
-
-body:has(input[value="2"]:checked) span:nth-of-type(4n+1) { animation-delay: 0s, 3.0s; }
-body:has(input[value="2"]:checked) span:nth-of-type(4n+2) { animation-delay: 0s, 3.2s; }
-body:has(input[value="2"]:checked) span:nth-of-type(4n+3) { animation-delay: 0s, 3.4s; }
-body:has(input[value="2"]:checked) span:nth-of-type(4n+4) { animation-delay: 0s, 3.6s; }
-
-/* Blauwe gloed pas na 3 seconden aanzetten */
-body:has(input[value="2"]:checked)::before {
-  animation: warp-shake 0.2s infinite 3s;
-  opacity: 0;
+/* warp tunnel delays */
+body:has(input[value="2"]:checked) span:nth-of-type(4n+1) {
+  animation-delay: 0s, 3.0s;
 }
 
-body:has(input[value="2"]:checked)::before {
-  transition: opacity 0.2s 3s;
-  opacity: 1;
+body:has(input[value="2"]:checked) span:nth-of-type(4n+2) {
+  animation-delay: 0s, 3.2s;
 }
 
-body:has(input[value="2"]:checked)::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  z-index: 100;
-  pointer-events: none;
-  animation: warp-flash 0.5s ease-out 3s;
+body:has(input[value="2"]:checked) span:nth-of-type(4n+3) {
+  animation-delay: 0s, 3.4s;
 }
 
-@keyframes warp-flash {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+body:has(input[value="2"]:checked) span:nth-of-type(4n+4) {
+  animation-delay: 0s, 3.6s;
 }
 
-/* De Enter Flash (na 3s countdown) op de BEFORE */
+
+
+/* enter warp-flash */
 body:has(input[value="2"]:checked)::before {
   content: "";
   position: absolute;
@@ -527,15 +628,9 @@ body:has(input[value="2"]:checked)::before {
   opacity: 0;
   z-index: 99;
   pointer-events: none;
-  animation: enter-flash 0.5s ease-out 3s; /* De 3s delay */
+  animation: warp-flash 0.5s ease-out 3s;
 }
-
-@keyframes enter-flash {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-/* De Exit Flash: Flitst wanneer we TERUGGAAN naar Cruise */
+/* exit warp-flash */
 body::after {
   content: "";
   position: absolute;
@@ -545,12 +640,11 @@ body::after {
   z-index: 100;
   pointer-events: none;
   visibility: hidden;
-  animation: unlock-flash 0.1s forwards 1s; 
 }
 
-/* De trigger: alleen als de pagina al geladen is én de hendel op 1 staat */
+
 body:has(input[value="1"]:checked)::after {
-  animation: exit-flash 0.6s ease-out;  
+  animation: exit-flash 0.6s ease-out;
 }
 
 body:has(input[value="2"]:checked)::after {
@@ -560,7 +654,133 @@ body:has(input[value="2"]:checked)::after {
 }
 
 @keyframes exit-flash {
-  0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
+
+
+
+
+
+
+
+
+
+
+/* Fuel gauge container  */
+section > div:first-child > section > label {
+  cursor: pointer;
+  position: relative; 
+  transform: rotate(4deg);
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Courier New', Courier, monospace;
+  z-index: 10;
+  display: block;
+
+  /* Kantelen als checkbox uit staat */
+  &:not(:has(input:checked)) {
+    transform: rotate(-4deg);
+    
+    /* Naald valt naar links (E-kant) */
+    & > div > div > div > div:last-child {
+      margin-left: 0px; 
+      transform: rotate(-5deg);
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    /* De indicator animatie wanneer gechecked (naar de F) */
+    &:checked ~ div:last-child {
+      transform:translate(100px);
+    }
+  }
+
+  /* De grijze buitenrand */
+  & > div > div {
+    background-color: #444;
+    width: 205px;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+
+    /* De zwarte binnenkant meter */
+    & > div {
+      background-color: #080808;
+      display: flex;
+      padding: 20px 40px;
+      position: relative;
+
+      /* Wit stripe container */
+      & > div:nth-of-type(2) {
+        display: flex;
+
+        /* Algemene streepjes (spans) */
+        & > span {
+          color: white;
+          width: 10px;
+          position: relative;
+
+          &::after {
+            content: ' ';
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 25px;
+            width: 2px;
+            height: 10px;
+            background: #8B8B8B;
+            position: relative;
+          }
+
+          /* De grote streepjes met letters (E, 1/2, F) */
+          &:nth-child(1), &:nth-child(6), &:nth-child(11) {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+
+            &::after {
+              height: 15px;
+              margin-top: 10px;
+            }
+          }
+
+          /* De rode E */
+          &:nth-child(1) { color: #CB3A3A; }
+          /* De groene F */
+          &:nth-child(11) { color: #03c703; }
+
+          & small {
+            font-size: 8px;
+            font-weight: normal;
+          }
+        }
+      }
+
+      /* De indicator (rode naald) */
+      & > div:last-child {
+        width: 10px;
+        display: block;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        margin-left: 0px;
+        transition: all 1.8s ease;
+        background-color: rgba(250, 22, 22, 0.3);
+        pointer-events: none;
+      }
+    }
+  }
+}
