@@ -59,12 +59,17 @@
   <span></span>
   <span></span>
 
+<!-- planet -->
+  <figure>
+    <div></div>
+  </figure>
+
 
 
   <!-- cockpit overlay -->
   <div>
     <header> <!-- top exterior ship -->
-      <h1>no man sky</h1>
+      <!-- <h1>no man sky</h1> -->
     </header> <!-- top exterior ship -->
 
     <div></div> <!-- arching windshield structure support -->
@@ -86,6 +91,14 @@
             <input type="radio" name="speed" value="1" checked> <!-- speed handle -->
           </div> <!-- speed handle container-->
 
+          
+          <aside>
+            <div>
+              <div></div>
+              <div></div>
+            </div>
+          </aside>
+
           <div> <!-- display unit -->
             <div>SPEED</div>
             <div></div>
@@ -96,7 +109,7 @@
               <div> <!-- grey stripe border  -->
                 <div> <!-- black backdrop   -->
                   <div></div>
-                  <div>  <!-- white stripe container  -->
+                  <div> <!-- white stripe container  -->
                     <span>E</span>
                     <span></span>
                     <span></span>
@@ -131,3 +144,40 @@
 </body>
 
 </html>
+
+<script>
+  const body = document.body;
+ 
+  const planet = document.querySelector('figure');
+  const speedButtons = document.querySelectorAll('input[name="speed"]');
+  
+  let rotation = 0;
+  let moveStep = 1;
+
+  function updateSteering() {
+    body.style.setProperty('--steer', rotation + 'deg');
+    body.style.setProperty('--steer-n', (rotation / 100));
+    requestAnimationFrame(updateSteering);
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') rotation -= moveStep;
+    if (e.key === 'ArrowRight') rotation += moveStep;
+    rotation = Math.max(-60, Math.min(60, rotation));
+  });
+
+  window.addEventListener('keyup', () => {
+    const center = setInterval(() => {
+      if (rotation > 0) rotation -= 1;
+      else if (rotation < 0) rotation += 1;
+      if (Math.abs(rotation) <= 1) {
+        rotation = 0;
+        clearInterval(center);
+      }
+    }, 20);
+  });
+
+  updateSteering();
+
+ 
+</script>
