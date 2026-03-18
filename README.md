@@ -144,3 +144,24 @@ Olivia Ng – CSS Gravity Toggle Logic
 MDN – CSS filter property (Night Vision implementation)
 
 CSS-Tricks – transform-origin deep dive
+
+## Week reflectie:
+Na de basis van het vliegen, lag de focus de afgelopen dagen op het schip en de systemen op het dashboard een beetje leven te geven, wat leidde tot een paar creatieve oplossingen en interessante technische uitdagingen.
+
+**De CSS rng:** Een van de grootste uitdagingen was het maken van planeten zonder JavaScript te gebruiken voor de visuele variatie. Hiervoor heb ik een soort CSS slotmachine gemaakt. Door gebruik te maken van @property draait er op de achtergrond constant een animatie die razendsnel nieuwe waarden voor kleur, grootte en positie genereert. Het slimme gedeelte zit in de koppeling met de snelheidshandel: zodra je de hendel op "Cruise" zet, pauzeert de animatie-staat van de body via de :has(:checked) selector. Hierdoor bevriezen de variabelen op een willekeurig moment en verschijnt er een unieke planeet. Het bleek uiteindelijk onmogelijk om de staat van een animatie op te slaan en daarop verder te bouwen; zodra de animatie herstart, pakt de browser vaak de standaardwaarde terug, wat zorgde voor een ongewenste reset van de planeten.
+
+**Interactie en Dashboards:**
+Tegelijkertijd heb ik gewerkt aan de besturing. Het stuur reageert nu direct op de muis, waarbij de rotatie via een CSS-variabele de hele omgeving laat meebewegen. Om het dieptegevoel te versterken, heb ik de planeten sneller laten verschuiven dan de sterren (parallax).
+
+Op het dashboard kwam er een "fuel gauge" bij. Hierbij heb ik een kleine visuele grap toegevoegd: zodra je op de meter klikt, valt de naald direct naar "Empty". Dit soort kleine interacties maken de cockpit iets levendiger.
+
+**Nachtvisie en "Happy Accidents"**:
+De laatste grote toevoeging was de thema-switcher in de vorm van een zware hendel aan het plafond. Geïnspireerd door Olivia Ng heb ik een hendel gemaakt die echt lijkt te vallen door zwaartekracht. Door een transition-delay op het witte knopje te zetten, begint deze pas te rollen als de hendel verticaal genoeg hangt.
+
+Deze hendel activeert de "Night Vision". Met filters zoals sepia en hue-rotate, kleur ik de sterren en planeten groen, terwijl ik een pseudo-element met scanlijnen over het raam leg. Hierbij ontstond een "happy accident": door een te algemene selector begonnen de lampjes van de brandstofmeter ook groen op te lichten en te knipperen, precies zoals de sterren buiten. Hoewel dit technisch een foutje was, zag het er zo perfect uit dat ik besloot het te laten staan; het geeft het dashboard een beetje dynamiek.
+
+**De Afwerking:**
+Om het project echt een eigen gezicht te geven, heb ik de cockpit afgerond met een pakkende titel in een passend space-font. De combinatie van de mechanische hendels, de tikkende brandstofmeter en de groene gloed van de nachtvisie maakt bijna dat de cockpit nu niet meer aanvoelt als een verzameling divjes, maar als een echt functionerend schip.
+
+**Terugblik op de week**
+Het was een week van experimenteren met de grenzen van CSS. Vooral het werken met @property en de :has() selector heeft me laten zien hoeveel logica je in een stylesheet kunt stoppen. Soms moet je accepteren dat CSS geen geheugen heeft voor animatiestanden, maar juist die beperkingen dwongen me om creatieve oplossingen te vinden voor de timing en de visuele overgangen.
