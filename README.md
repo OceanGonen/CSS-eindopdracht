@@ -1,8 +1,8 @@
 Ik wil een controlpanel maken dat een POV-ruimteschip cockpit simuleerd, waarbij een dynamisch sterrenveld achter je bewegen waardoor het lijkt alsof je door 3d space vliegt.
 
 
-Donderdag 26/02 (Voorjaarsvakantie)
-Doel: De fundering leggen van een interactieve sci-fi cockpit en een sterrenveld creëren.
+**Donderdag 26/02 (Voorjaarsvakantie)
+**Doel: De fundering leggen van een interactieve sci-fi cockpit en een sterrenveld creëren.
 
 Behaald:
 
@@ -13,8 +13,8 @@ Behaald:
 - Een functionele hendel gebouwd met verborgen radio-buttons met de :has() selector.
 
   
-Woensdag 04/03 
-Doel: De "Warp Drive" realiseren met animatie en visuele feedback.
+**Woensdag 04/03 
+**Doel: De "Warp Drive" realiseren met animatie en visuele feedback.
 
 Behaald:
 
@@ -48,8 +48,8 @@ Drafts – Using CSS state animations: https://drafts.csswg.org/css-animations-2
 CSS-Tricks – Guide to CSS Animation logic: https://css-tricks.com/almanac/functions/h/hue-rotate/
 
 
-Donderdag 12/03 
-
+**Donderdag 12/03 
+**
 Doel:
 Het realiseren van een methode vinden om planeten te genereren zonder gebruik te maken van JavaScript.
 
@@ -89,8 +89,8 @@ CSS-Tricks – Guide to Stacking Contexts
 W3C – CSS Animations Level 2 spec (Play-state logic)
 
 
-Woensdag 18/03
-
+**Woensdag 18/03
+**
 Doel:
 Voldoen aan alle eisen van de opdracht: Pakkende titel en font, het toevoegen van een "Thema" door middel van een nachtvisie Toggle.
 
@@ -103,8 +103,11 @@ Een Toggle gemaakt in de bovenste sectie van de cockpit. Door gebruik te maken v
 Deze hendel is de Theme Switcher. Via de :has(input[name="theme"]:checked) selector op de body wordt een soort nachtkijker-modus geactiveerd.
 <img width="1412" height="730" alt="image" src="https://github.com/user-attachments/assets/be8b1ae3-6416-459c-a22a-f79a1ad37094" />
 
-Visuele filters: Alleen de ruimte (sterren en planeten) wordt aangetast door een groen monochroom filter (sepia, hue-rotate, saturate). De cockpit zelf blijft notmaal. Alleen bij de fuelgauge zie je ook dat het groen oplicht, wat niet de bedoel is, maar het is het gevolg van een 'happy accident', aangezien door een te algemene selector de <span>'s in de fuel gauge oplichten en knipperen net als de sterren tijdens de warptunnel animatie. Nu is het een minder happy accident, maar wil ik niet de selectors aanpassen als ik de knipperde UI opoffer daarvoor.
+Visuele filters: Alleen de ruimte (sterren en planeten) wordt aangetast door een groen monochroom filter (sepia, hue-rotate, saturate). De cockpit zelf blijft notmaal. Alleen bij de fuelgauge zie je ook dat het groen oplicht, wat niet de bedoeling is, maar het is het gevolg van een 'happy accident', aangezien door een te algemene selector de <span>'s in de fuel gauge oplichten en knipperen net als de sterren tijdens de warptunnel animatie. Nu is het een minder happy accident, maar wil ik niet de selectors aanpassen als ik de knipperde UI opoffer daarvoor.
 <img width="312" height="164" alt="image" src="https://github.com/user-attachments/assets/74480eca-5f73-4a9d-86a3-13c3f78c474b" />
+
+Als laatste heb ik een space font gedownload en een simpele, hopelijk pakkende titel.
+https://www.1001fonts.com/space-fonts.html
 
 
 Technische uitdagingen & Leerpunten:
