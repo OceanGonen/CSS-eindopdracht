@@ -155,7 +155,7 @@ Tegelijkertijd heb ik gewerkt aan de besturing. Het stuur reageert nu direct op 
 
 Op het dashboard kwam er een "fuel gauge" bij. Hierbij heb ik een kleine visuele grap toegevoegd: zodra je op de meter klikt, valt de naald direct naar "Empty". Dit soort kleine interacties maken de cockpit iets levendiger.
 
-**Nachtvisie en "Happy Accidents"**:
+**Nachtvisie en "Happy Accidents:**
 De laatste grote toevoeging was de thema-switcher in de vorm van een zware hendel aan het plafond. Geïnspireerd door Olivia Ng heb ik een hendel gemaakt die echt lijkt te vallen door zwaartekracht. Door een transition-delay op het witte knopje te zetten, begint deze pas te rollen als de hendel verticaal genoeg hangt.
 
 Deze hendel activeert de "Night Vision". Met filters zoals sepia en hue-rotate, kleur ik de sterren en planeten groen, terwijl ik een pseudo-element met scanlijnen over het raam leg. Hierbij ontstond een "happy accident": door een te algemene selector begonnen de lampjes van de brandstofmeter ook groen op te lichten en te knipperen, precies zoals de sterren buiten. Hoewel dit technisch een foutje was, zag het er zo perfect uit dat ik besloot het te laten staan; het geeft het dashboard een beetje dynamiek.
@@ -163,5 +163,5 @@ Deze hendel activeert de "Night Vision". Met filters zoals sepia en hue-rotate, 
 **De Afwerking:**
 Om het project echt een eigen gezicht te geven, heb ik de cockpit afgerond met een pakkende titel in een passend space-font. De combinatie van de mechanische hendels, de tikkende brandstofmeter en de groene gloed van de nachtvisie maakt bijna dat de cockpit nu niet meer aanvoelt als een verzameling divjes, maar als een echt functionerend schip.
 
-**Terugblik op de week**
+**Terugblik op de week:**
 Het was een week van experimenteren met de grenzen van CSS. Vooral het werken met @property en de :has() selector heeft me laten zien hoeveel logica je in een stylesheet kunt stoppen. Soms moet je accepteren dat CSS geen geheugen heeft voor animatiestanden, maar juist die beperkingen dwongen me om creatieve oplossingen te vinden voor de timing en de visuele overgangen.
