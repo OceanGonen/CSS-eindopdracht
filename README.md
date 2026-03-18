@@ -47,6 +47,29 @@ Drafts – Using CSS state animations: https://drafts.csswg.org/css-animations-2
 
 CSS-Tricks – Guide to CSS Animation logic: https://css-tricks.com/almanac/functions/h/hue-rotate/
 
+**Week reflectie**
+Het doel van deze week was uitdagend: een POV-ervaring bouwen van een ruimteschip dat door een 3D-ruimte lijkt te vliegen, zonder scripts. De afgelopen dagen heb ik gewerkt aan de fundering, de snelheid en de interactie van dit schip.
+
+De start: Vorm en Ruimte
+Ik begon bij de basisvormen. Om de leegte buiten te vullen, heb ik een sterrenveld gemaakt van simpele span-elementen. Een belangrijk leermoment hier was het gebruik van de 11n selector en negatieve animation-delays. Hierdoor staan de sterren bij het openen van de pagina meteen verspreid over het scherm, in plaats van dat ze allemaal tegelijk vanaf het midden beginnen te vliegen. 
+
+De sprong naar Warp
+Nadat de basis stond, was het tijd voor de Warp Drive. De uitdaging was om diepte te creëren. Door de sterren in 12 groepen te verdelen en ze te draaien met rotate(var(--angle)), wijzen alle lichtstrepen nu perfect naar één verdwijnpunt. Het toevoegen van een 3-seconden countdown was een extra detailtje wat ik leuk vond om toe te voegen; het "Field of View" effect waarbij de sterren eerst naar binnen trekken voordat ze exploderen in warp-trails, geeft echt het gevoel van acceleratie. Ik liep hier wel tegen de grens van CSS aan: het is voor zover ik weet onmogelijk om twee verschillende animaties op één element te laten draaien zonder dat de boel verspringt. 
+
+Interactie 
+Daarna lag de focus op de knoppen en de besturing. Het implementeren van een stuur die de planeet en de sterren de andere kant op duwt (parallax), maakte een cool effect. 
+
+Terugblik
+Als ik naar de week terugkijk, zie ik de kracht van CSS selectors. Het slim gebruiken van de :has() selector voor de logica en @property voor de willekeurige planeten laat zien dat CSS veel meer kan dan alleen stylen. Het was een week van finetunen: van het laten trillen van de cockpit tijdens warp tot het timen van een snelheids hendel. Het resultaat is een cockpit die ook een beetje karakter heeft.
+
+
+
+
+
+
+
+
+
 
 **Donderdag 12/03**
 Doel:
