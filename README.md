@@ -19,8 +19,12 @@ Doel: De "Warp Drive" realiseren met animatie en visuele feedback.
 Behaald:
 
 - De sterren herschreven naar 12 groepen (12n) om gaten in het sterrenveld te dichten. Door rotate(var(--angle)) te combineren met scaleY wijzen alle warp-trails nu perfect naar het middelpunt, wat een diepte-effect geeft.
+<img width="1138" height="468" alt="image" src="https://github.com/user-attachments/assets/24f3ddf3-f8e3-4024-9e91-a3bbaaedf58d" />
+
 
 - Een transitie ontwikkeld voor de sprong naar warp. Tijdens de 3 seconden countdown trekken de sterren langzaam naar het midden (FOV animatie), wat een "Field of View" effect simuleert voordat de sprong plaatsvindt.
+<img width="926" height="317" alt="image" src="https://github.com/user-attachments/assets/f75d1f3a-3e09-4e82-aaaf-fe189273263d" />
+
 
 Feedback Systeem:
 
@@ -37,11 +41,11 @@ Het is onmogleijk om meerdere animaties (freeze-space en warp-tunnel) op één e
 
 Bronnen:
 
-MDN – CSS :has()
+MDN – CSS :has():  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
 MDN – Using CSS animations
 
-CSS-Tricks – Guide to CSS Animation logic
+CSS-Tricks – Guide to CSS Animation logic: https://css-tricks.com/almanac/functions/h/hue-rotate/
 
 
 Donderdag 12/03 
@@ -52,7 +56,7 @@ Het realiseren van een methode vinden om planeten te genereren zonder gebruik te
 Behaald:
 
 Interactieve besturing: Ik heb een stuursysteem geïmplementeerd dat reageert op de muis en pijltoetsen. Via JavaScript wordt de rotatie berekend en als CSS-variabele (--steer) doorgegeven. Hierdoor bewegen de sterren en planeten (de sterren iets minder dan de planeten voor het dieptegevoel) en geven de cockpit het effect van naar links en rechts gaan.
-<img width="569" height="341" alt="image" src="https://github.com/user-attachments/assets/dfe20b01-aab4-448f-8f62-5acf7a1f3b11" />
+<img width="721" height="475" alt="image" src="https://github.com/user-attachments/assets/359809e4-68ec-4dae-a8bd-c25a1519d5dc" />
 
 Ook heb ik een fuel gauge gemaakt met een visuele gag dat wanneer je erop klikt gaat de meting naald naar Empty. 
 <img width="280" height="150" alt="image" src="https://github.com/user-attachments/assets/ac2aea0a-2a2c-4974-a3e9-d45cbc063dc0" /> <img width="285" height="135" alt="image" src="https://github.com/user-attachments/assets/bac26db3-4ef1-4753-838a-af5872e617d7" />
