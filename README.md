@@ -43,7 +43,7 @@ Bronnen:
 
 MDN – CSS :has():  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
-MDN – Using CSS animations
+Drafts – Using CSS state animations: https://drafts.csswg.org/css-animations-2/#animation-play-state
 
 CSS-Tricks – Guide to CSS Animation logic: https://css-tricks.com/almanac/functions/h/hue-rotate/
 
