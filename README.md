@@ -77,9 +77,13 @@ Het realiseren van een methode vinden om planeten te genereren zonder gebruik te
 
 Behaald:
 
+<<<<<<< Updated upstream
 Interactieve besturing: Ik heb een stuursysteem geïmplementeerd dat reageert op de muis en pijltoetsen. Via JavaScript wordt de rotatie berekend en als CSS-variabele (--steer) doorgegeven. Hierdoor bewegen de sterren en planeten (de sterren iets minder dan de planeten voor het dieptegevoel) en geven de cockpit het effect van naar links en rechts gaan.
 <img width="721" height="475" alt="image" src="https://github.com/user-attachments/assets/359809e4-68ec-4dae-a8bd-c25a1519d5dc" />
 <img width="530" height="36" alt="image" src="https://github.com/user-attachments/assets/fcab693e-cb27-479f-911e-0ef261972428" />
+=======
+Interactieve besturing: Ik heb een stuursysteem geïmplementeerd dat reageert op de pijltjestoetsen. Via JavaScript wordt de rotatie berekend en als CSS-variabele (--steer-n) doorgegeven. Hierdoor bewegen de sterren synchroon mee en geven de cockpit het effect van ronddraaien.
+>>>>>>> Stashed changes
 
 
 Ook heb ik een fuel gauge gemaakt met een visuele gag dat wanneer je erop klikt gaat de meting naald naar Empty. 
