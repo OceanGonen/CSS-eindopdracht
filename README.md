@@ -6,7 +6,7 @@ Doel: De fundering leggen van een interactieve sci-fi cockpit en een sterrenveld
 
 Behaald:
 
-- De visuele basis van het schip opgebouwd met header en section. Door middel van clip-path: polygon() waarden heb ik de vorm uitgesneden.
+- De visuele basis van het schip opgebouwd met header en section. Door middel van clip-path: polygon() heb ik de vorm uitgesneden.
 
 - Een dynamisch sterrenveld opgezet met span elementen. Door 11n selectors en negatieve animation-delays lijkt de ruimte oneindig en staan de sterren bij het laden van de pagina direct verspreid over het scherm.
 
