@@ -87,3 +87,36 @@ MDN – CSS @property
 CSS-Tricks – Guide to Stacking Contexts
 
 W3C – CSS Animations Level 2 spec (Play-state logic)
+
+
+Woensdag 18/03
+
+Doel:
+Voldoen aan alle eisen van de opdracht: Pakkende titel en font, het toevoegen van een "Thema" door middel van een nachtvisie Toggle.
+
+Behaald:
+
+Interactieve Nachtvisie:
+
+Een Toggle gemaakt in de bovenste sectie van de cockpit. Door gebruik te maken van transform-origin: 20% center en een specifieke cubic-bezier(0.895, 0.03, 0.685, 0.22) timing, simuleert de hendel zwaartekracht: hij valt met een versnelling omlaag. https://codepen.io/oliviale/pen/xxboXzo
+
+Deze hendel is de Theme Switcher. Via de :has(input[name="theme"]:checked) selector op de body wordt een soort nachtkijker-modus geactiveerd.
+<img width="1412" height="730" alt="image" src="https://github.com/user-attachments/assets/be8b1ae3-6416-459c-a22a-f79a1ad37094" />
+
+Visuele filters: Alleen de ruimte (sterren en planeten) wordt aangetast door een groen monochroom filter (sepia, hue-rotate, saturate). De cockpit zelf blijft notmaal. Alleen bij de fuelgauge zie je ook dat het groen oplicht, wat niet de bedoel is, maar het is het gevolg van een 'happy accident', aangezien door een te algemene selector de <span>'s in de fuel gauge oplichten en knipperen net als de sterren tijdens de warptunnel animatie. Nu is het een minder happy accident, maar wil ik niet de selectors aanpassen als ik de knipperde UI opoffer daarvoor.
+<img width="312" height="164" alt="image" src="https://github.com/user-attachments/assets/74480eca-5f73-4a9d-86a3-13c3f78c474b" />
+
+
+Technische uitdagingen & Leerpunten:
+
+Zwaartekracht simuleren: Het was een uitdaging om het witte bolletje op de hendel pas te laten rollen als de hendel verticaal genoeg stond. Dit is opgelost door een transition-delay van 0.2s toe te voegen aan het balletje, waardoor de hendel eerst een stukje moet "vallen" voordat de beweging start.
+
+Gelaagde filters: Het bleek lastig om alleen de ruimte groen te kleuren zonder het hele schip mee te nemen. Door de filters specifiek op de span (sterren) en figure (planeet) te zetten en een pseudo-element (body::after) met een lage z-index te gebruiken voor de scanlijnen, is de cockpit 'vrijgehouden' van de Night Vision.
+
+Bronnen:
+
+Olivia Ng – CSS Gravity Toggle Logic
+
+MDN – CSS filter property (Night Vision implementation)
+
+CSS-Tricks – transform-origin deep dive
