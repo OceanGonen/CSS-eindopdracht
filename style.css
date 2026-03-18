@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: 'SpaceFont'; 
-  src: url('fonts/cybersky-trial-font/CyberskyFreeTrial-GOryA.otf') format('opentype'); 
+  src: url('fonts/deltha/Deltha.otf') format('opentype'); 
   font-weight: normal;
   font-style: normal;
 }
@@ -40,13 +40,15 @@ h1{
 }
 
 
-/* planet */
-@property --p-hue { syntax: "<number>"; inherits: true; initial-value: 0; }
-@property --p-size { syntax: "<number>"; inherits: true; initial-value: 100; }
+
+/* *MARK: planet */
+/* BRON: Nils Binder - https://codepen.io/enbee81/pen/wvOVypZ?editors=1100
+ */
+@property --p-hue { syntax: "<number>"; inherits: true; initial-value: 120; }
+@property --p-size { syntax: "<number>"; inherits: true; initial-value: 200; }
 @property --p-top { syntax: "<number>"; inherits: true; initial-value: 30; }
 @property --p-left { syntax: "<number>"; inherits: true; initial-value: 60; }
 
-/* De animaties die constant 'draaien' op de achtergrond */
 @keyframes planet-rng {
   from { --p-hue: 0; --p-size: 100; --p-top: 30; --p-left: 20; }
   to { --p-hue: 360; --p-size: 150; --p-top: 35; --p-left: 80; }
@@ -57,15 +59,15 @@ body {
 }
 
 body > figure {
-  width: calc(var(--fixed-size, 100) * 1px);
-  height: calc(var(--fixed-size, 100) * 1px);
+  width: calc(var(--fixed-size, 200) * 1px);
+  height: calc(var(--fixed-size, 200) * 1px);
   top: calc(var(--fixed-top, 20) * 1%);
   left: calc(var(--fixed-left, 50) * 1%);
   
   background: radial-gradient(
     circle at 30% 30%, 
-    hsl(var(--fixed-hue, 0), 70%, 50%), 
-    hsl(calc(var(--fixed-hue, 0) + 40), 80%, 20%), 
+    hsl(var(--fixed-hue), 70%, 50%), 
+    hsl(calc(var(--fixed-hue) + 40), 80%, 20%), 
     #000
   );
   
@@ -74,9 +76,10 @@ body > figure {
   z-index: 1;
   box-shadow: -10px -10px 30px rgba(0,0,0,0.8) inset;
   
-  /* Parallax effect van eerder */
-  transform: translateX(calc(var(--steer-n, 0) * -2vw));
+  transform: translateX(calc(var(--steer, 0) * -8px));
 }
+
+
 
 /* Atmosfeer/Gloed */
 body > figure > div {
@@ -89,30 +92,10 @@ body > figure > div {
 
 
 
-body > figure {
-  position: absolute;
-  
-  transform: translateX(calc(var(--steer-n, 0) * -10vw));
-  
-  transition: transform 0.2s ease-out;
-  visibility: visible;
-}
-
-/* Als Cruise gechecked is: bevries de huidige waarden van de animatie */
-body:has(input[value="1"]:checked) {
-  animation-play-state: paused;
-  --fixed-hue: var(--p-hue);
-  --fixed-size: var(--p-size);
-  --fixed-top: var(--p-top);
-  --fixed-left: var(--p-left);
-}
-
-/* Tijdens Warp (value 2): de animatie speelt weer op de achtergrond (onzichtbaar) */
 body:has(input[value="2"]:checked) {
   animation-play-state: running;
 }
 
-/* Verberg de planeet tijdens warp (jouw bestaande code) */
 body:has(input[value="2"]:checked) > figure {
   opacity: 0;
   transition: opacity 0.6s ease-out;
@@ -124,66 +107,32 @@ body:not(:has(input[value="2"]:checked)) {
   --fixed-top: var(--p-top);
   --fixed-left: var(--p-left);
 }
-body:has(input[value="2"]:checked) > figure {
-  /* Planeet fadet simpelweg weg */
-  opacity: 0;
-  visibility: hidden;
-  /* We zetten de transitie hier heel kort voor de opacity, 
-     zodat hij sneller weg is dan de gokkast-sprong */
-  transition: opacity 0.9s ease-in;
-}
 
-/* 3. De Gokkast Logica */
 body:has(input[value="1"]:checked) {
   animation-play-state: paused;
-  /* De gefixte waarden zijn alleen gelijk aan de gokkast als we NIET in Warp zitten */
   --fixed-hue: var(--p-hue);
   --fixed-size: var(--p-size);
   --fixed-top: var(--p-top);
   --fixed-left: var(--p-left);
 }
 
-body:has(input[value="2"]:checked) {
-  animation-play-state: running;
-  /* Tijdens warp forceren we de opacity van de planeet-onderdelen ook op 0 
-     voor het geval de browser de 'figure' selector traag verwerkt */
-}
-
-/* 1. De Standaard Staat (Cruise) */
 body:has(input[value="1"]:checked) > figure {
   opacity: 1;
   visibility: visible;
-  /* Snelle transitie voor als hij verschijnt uit Warp */
   transition: opacity 0.5s ease-out; 
 }
 
-/* 2. De Warp Staat (Wanneer je de hendel overhaalt) */
 body:has(input[value="2"]:checked) > figure {
   opacity: 0;
   visibility: hidden;
-  /* Trage fade die synchroon loopt met je 3s countdown */
   transition: opacity 3s ease-in-out;
 }
 
-/* 3. De Gokkast Logica synchroniseren */
-body:has(input[value="2"]:checked) {
-  animation-play-state: running;
-  /* De gokkast begint pas te draaien als de planeet weg is (na 3s) */
-  animation-delay: 3s; 
-}
-
-body:has(input[value="1"]:checked) {
-  animation-play-state: paused;
-  --fixed-hue: var(--p-hue);
-  --fixed-size: var(--p-size);
-  --fixed-top: var(--p-top);
-  --fixed-left: var(--p-left);
-}
 
 
 
 
-/* Every star ////////////////////////////////////////////////////////////////////////////// */
+/* *MARK: star  */
 
 body>span {
   position: absolute;
@@ -221,7 +170,6 @@ body>span:nth-of-type(12n+10) { --x: -40vw; --y: -40vh; --angle: 315deg; --durat
 body>span:nth-of-type(12n+11) { --x: -45vw; --y: -15vh; --angle: 290deg; --duration: 2.7s; --initial-delay: -105s;}
 body>span:nth-of-type(12n+12) { --x: -10vw; --y: -45vh; --angle: 340deg; --duration: 3.2s; --initial-delay: -40s;}
 
-/* Extra spreiding voor even/oneven om de delays nog meer te husselen */
 body>span:nth-of-type(even) {
   animation-delay: -40s;
 }
@@ -229,7 +177,7 @@ body>span:nth-of-type(3n) {
   animation-delay: -75s;
 }
 
-/* Maakt sommige sterren groter, kleiner, feller */
+/* Maakt sommige sterren groter feller */
 body>span:nth-of-type(3n) {
   width: 1px;
   height: 1px;
@@ -237,7 +185,6 @@ body>span:nth-of-type(3n) {
 }
 body>span:nth-of-type(5n) {
   box-shadow: 0 0 10px 2px white;
-  /* Gloeiende sterren */
 }
 
 body>span:nth-of-type(5n) {
@@ -259,7 +206,7 @@ body>span:nth-of-type(5n) {
 
   100% {
 transform: translate(
-        calc(-50% + var(--x) + (var(--steer-n, 0) * -5vw)), 
+        calc(-50% + var(--x) + (var(--steer, 0) * -2px)), 
         calc(-50% + var(--y))
       ) scale(2);
     opacity: 0;
@@ -268,7 +215,7 @@ transform: translate(
 
 
 
-/* Ship styling //////////////////////////////////////////////////////////////////////// */
+/* *MARK: Ship styling  */
 
 /* master div */
 body>div:first-of-type {
@@ -287,7 +234,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 6vh;
+  height: 8vh;
   background: var(--ship-color);
   clip-path: polygon(0% 100%, 0% 40%, 12% 0%, 87% 0%, 100% 40%, 100% 100%);
   border-top: 4px solid #333;
@@ -296,7 +243,7 @@ header {
 }
 
 /* bottom exterior ship */
-body>div>section {
+body>div>section:not(:first-of-type) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -314,7 +261,6 @@ body>div>section {
 section {
   pointer-events: auto;
   z-index: 15;
-  /* Hoger dan de frames */ 
 }
 
 /* controlpanel backdrop */
@@ -407,27 +353,165 @@ body>div:first-of-type>div:first-of-type {
 }
 
 
+/* *MARK: Header */
+
+/* BRON: https://codepen.io/oliviale/pen/xxboXzo */
+/* De container van de hendel */
+body > div:first-of-type > section:first-of-type {
+  position: absolute;
+  top: 0;
+  left: 70%;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+/* De Checkbox */
+body > div:first-of-type > section:first-of-type input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* De Hendel (het label) */
+body > div:first-of-type > section:first-of-type label {
+  width: 7em; 
+  height: 3em;
+  background: #2e394d;
+  display: block;
+  border-radius: 50px;
+  position: relative;
+  border: 2px solid #333;
+  
+  transform-origin: 20% center; 
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+/* Het Bolletje  */
+body > div:first-of-type > section:first-of-type label span {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 2.3em;
+  height: 2.3em;
+  top: .25em;
+  left: .25em;
+  border-radius: 2em;
+  border: 2px solid #88cf8f;
+  background: #fff;
+  
+  transition: 0.6s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+
+body > div:first-of-type > section:first-of-type:has(input:checked) label {
+  transform: rotate(90deg);
+}
+
+body > div:first-of-type > section:first-of-type:has(input:checked) label span {
+  transform: translateX(4.3em); 
+  transition-delay: .2s; 
+  border-color: #ffcc00;
+}
+
+
+body:has(input[name="theme"]:checked) {
+  background: radial-gradient(circle at center, #001500 0%, #000000 100%);
+  transition-delay: 0.7s;
+}
+
+body:has(input[name="theme"]:checked) > span {
+  background: #00ff00;
+  box-shadow: 0 0 8px #00ff00;
+  filter: blur(0.5px);
+  transition-delay: 0.7s;
+}
+
+body:has(input[name="theme"]:checked) > figure {
+  filter: brightness(1.5) grayscale(1) sepia(1) hue-rotate(80deg) saturate(4);
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.5);
+  transition-delay: 0.7s;
+}
+
+
+body:has(input[name="theme"]:checked)::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  /* GEMINI */
+  /* Een patroon van horizontale lijnen en een subtiele korrel */ 
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 255, 0, 0.05) 50%
+  ), 
+  linear-gradient(90deg, rgba(255, 0, 0, 0), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0));
+  background-size: 100% 4px, 3px 100%;
+  z-index: 5; 
+  pointer-events: none;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { opacity: 0.95; }
+}
 
 
 
-/* Contolpanel//////////////////////////////////////////////////////////////////////////////////////// */
 
-/* Windshield wiper button */
-button {
+
+
+
+/* *MARK:Ruitenwisser*/
+body > div > aside {
+  position: absolute;
+  bottom: 26vh;       
+  left: 50%;
+  width: 8px;
+  height: 45vh;      
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 5px;
+  z-index: 5;
+  
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(-90deg);
+  
+  transition: transform 0.6s ease-in-out;
+  pointer-events: none;
+}
+
+/* Het rubberen gedeelte  */
+body > div > aside::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 12px;
+  height: 90%;
+  background: #111;
+  border-radius: 3px;
+  box-shadow: inset -2px 0 5px rgba(255,255,255,0.1);
+}
+
+
+
+
+
+section > div:first-child > section > label:first-of-type {
   width: 70px;
   height: 50px;
   position: relative;
-  background: none;
-  outline: none;
-  border: none;
-  padding: 0;
-  margin: 0;
+  display: block;
+  cursor: pointer;
   z-index: 11;
-
 }
 
-/* button text */
-button>div:first-child {
+section > div:first-child > section > label:first-of-type div:first-of-type {
   width: 100%;
   height: 100%;
   background: var(--button-color);
@@ -440,13 +524,10 @@ button>div:first-child {
   outline: 2px solid rgb(36, 38, 34);
   transition: 0.2s;
   position: relative;
-  overflow: hidden;
-  z-index: 11;
-
+  z-index: 2;
 }
 
-/* button side */
-button>div:last-child {
+section > div:first-child > section > label:first-of-type div:last-of-type {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -455,32 +536,78 @@ button>div:last-child {
   left: 0;
   border-radius: 7mm;
   outline: 2px solid rgb(36, 38, 34);
-  z-index: 10;
+  z-index: 1;
 }
 
 
 
-button:active div:first-child {
-  transform: translateY(10px);
-  z-index: 11;
-
+body:has(section > div:first-child > section > label:first-of-type input:checked) > div:first-of-type > aside:first-of-type {
+  animation: wipe-animation 1s ease-in-out 2 alternate forwards;
 }
 
-/* button bottom */
-button::before {
+section > div:first-child > section > label:first-of-type:has(input:checked) div:first-of-type {
+  animation: button-press ease-in-out 0.5s;
+}
+section > div:first-child > section > label:first-of-type input[type="checkbox"] {
   position: absolute;
-  content: "";
-  width: calc(100% + 2px);
-  height: 100%;
-  background: rgb(140, 140, 140);
-  top: 14px;
-  left: -1px;
-  border-radius: 7mm;
-  outline: 2px solid rgb(36, 38, 34);
+  inset: 0;
+  opacity: 0;
   z-index: 10;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-/* De Container van de hendel */
+
+body > div:first-of-type > aside:first-of-type {
+  animation: wipe-off 1s ease-in-out 2 alternate forwards;
+}
+
+body:has(section > div:first-child > section > label:first-of-type input:checked) > div:first-of-type > aside:first-of-type {
+  animation: wipe-on 1s ease-in-out 2 alternate forwards;
+}
+@keyframes wipe-on {
+  0% { transform: translateX(-50%) rotate(-90deg); }
+  100% { transform: translateX(-50%) rotate(85deg); }
+}
+
+@keyframes wipe-off {
+  0% { transform: translateX(-50%) rotate(-90deg); }
+  100% { transform: translateX(-50%) rotate(85deg); }
+}
+
+section > div:first-child > section > label:first-of-type:has(input) div:first-of-type {
+  animation: button-press-v2 0.5s ease-in-out;
+}
+
+section > div:first-child > section > label:first-of-type:has(input:checked) div:first-of-type {
+  animation: button-press-v1 0.5s ease-in-out;
+}
+
+@keyframes button-press-v1 { 50% { transform: translateY(10px); } }
+@keyframes button-press-v2 { 50% { transform: translateY(10px); } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *MARK: speedhendel */
 section>div:first-child>section>div:nth-of-type(1) {
   width: 50px;
   height: 120px;
@@ -530,17 +657,10 @@ section>div:first-child>section>div:nth-of-type(1) {
   }
 }
 
-/* --- DE SNELHEID LOGICA (STERREN) --- */
 
 /* Cruise Speed (Sloom) */
 body:has(input[value="1"]:checked)>span {
-  animation-duration: 120s;
-}
-
-/* Warp Speed (Snel + Blur) */
-body:has(input[value="2"]:checked)>span {
-  animation-duration: 0.4s;
-  filter: blur(1px);
+  animation-duration: 160s;
 }
 
 
@@ -551,8 +671,7 @@ body:has(input[value="2"]:checked)>span {
 
 
 
-
-/* De Stuur-container */
+/* *MARK: Stuur */
 section > div:first-child > section > aside {
   width: 120px;
   height: 80px;
@@ -564,19 +683,7 @@ section > div:first-child > section > aside {
   z-index: 20;
 }
 
-/* Het draaiende deel van het stuur */
-aside > div {
-  width: 100px;
-  height: 20px;
-  background: #333;
-  border: 4px solid #111;
-  border-radius: 10px;
-  position: relative;
-  transform: rotate(var(--steer, 0deg));
-  transition: transform 0.1s ease-out;
-}
-
-/* De handvatten (vleugels) */
+/* De handvatten  */
 aside > div > div {
   position: absolute;
   width: 25px;
@@ -594,6 +701,27 @@ aside > div > div:last-child { right: -15px; }
 
 
 
+/* Het draaiende deel van het stuur */
+aside > div {
+  width: 100px;
+  height: 20px;
+  background: #333;
+  border: 4px solid #111;
+  border-radius: 10px;
+  position: relative;
+  transform: rotate(calc(var(--steer) * 1deg)); 
+  transition: transform 0.1s ease-out;
+}
+
+
+section > div:first-child > section > aside input[type="range"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0; 
+  z-index: 25; 
+  cursor: ew-resize;
+  width: 100%;
+}
 
 
 
@@ -610,11 +738,7 @@ aside > div > div:last-child { right: -15px; }
 
 
 
-
-
-
-
-/* De Display Unit (het schermpje) */
+/* *MARK: Display  */
 section > div:first-child > section > div:nth-of-type(2) {
   width: 180px;
   height: 80px;
@@ -630,7 +754,6 @@ section > div:first-child > section > div:nth-of-type(2) {
   color: white;
   flex-shrink: 0;
 
-  /* De "SPEED" tekst */
   & > div:first-child {
     color: #0ff;
     font-size: 10px;
@@ -639,7 +762,6 @@ section > div:first-child > section > div:nth-of-type(2) {
     text-shadow: 0 0 5px #0ff;
   }
 
-  /* Het getal / De Countdown container */
   & > div:last-child::after {
     content: "cruise";
     color: rgb(5, 245, 37);
@@ -649,29 +771,28 @@ section > div:first-child > section > div:nth-of-type(2) {
   }
 }
 
-/* --- DE COUNTDOWN & WARP LOGICA --- */
 
-/* Countdown trigger op het scherm */
 body:has(input[value="2"]:checked) section > div:first-child > section > div:nth-of-type(2) > div:last-child::after {
   animation: countdown 3s steps(1) forwards;
 }
 
 /* De Sterren Warp  */
 body:has(input[value="2"]:checked)>span {
-  animation:
-    FOV 3s linear forwards,
-    warp-tunnel 0.5s linear infinite 3s;
+  filter: blur(1px);
+  animation:warp-tunnel 0.5s linear infinite;
+  animation-delay: 3s; 
+  opacity: 1;
+  animation-duration: 0.4s;
+
   opacity: 1;
 }
 
-/* Blauwe gloed, flitsen en shakes triggeren op de radio button status */
 body:has(input[value="2"]:checked)::before {
   animation: warp-shake 0.2s infinite 3s;
   opacity: 1;
   transition: opacity 0.2s 3s;
 }
 
-/* De flits-animatie op de body::after of ::before */
 body:has(input[value="2"]:checked)::after {
   content: "";
   position: absolute;
@@ -694,7 +815,7 @@ body:has(input[value="2"]:checked)::before {
   animation: warp-shake 0.2s infinite;
 }
 
-/* warp animaties */
+/**MARK: warp animaties */
 
 body:has(input[value="2"]:checked) section>div:first-child {
   animation: light-flicker 0.2s infinite;
@@ -782,7 +903,8 @@ body:has(input[value="2"]:checked) span {
   opacity: 1;
 }
 
- /*Animatie 1 */ 
+ /*Animatie  */ 
+ /* BRON: GEMINI */
 @keyframes FOV {
   0% {
     transform: translate(calc(-50% + var(--x) * 0.5), calc(-50% + var(--y) * 0.6)) scale(0.8);
@@ -884,8 +1006,9 @@ body:has(input[value="2"]:checked)::after {
 
 
 
-/* Fuel gauge container  */
-section > div:first-child > section > label {
+/* *MARK: Fuel gauge container  */
+/* BRON: https://devsnap.me/css-toggle-switches */
+section > div:first-child > section > label:last-of-type {
   cursor: pointer;
   position: relative; 
   transform: rotate(4deg);
@@ -908,7 +1031,6 @@ section > div:first-child > section > label {
   input[type="checkbox"] {
     display: none;
 
-    /* De indicator animatie wanneer gechecked (naar de F) */
     &:checked ~ div:last-child {
       transform:translate(100px);
     }
@@ -936,7 +1058,7 @@ section > div:first-child > section > label {
       & > div:nth-of-type(2) {
         display: flex;
 
-        /* Algemene streepjes (spans) */
+        /* Algemene streepjes */
         & > span {
           color: white;
           width: 10px;
@@ -978,7 +1100,7 @@ section > div:first-child > section > label {
         }
       }
 
-      /* De indicator (rode naald) */
+      /* De indicator  */
       & > div:last-child {
         width: 10px;
         display: block;

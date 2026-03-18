@@ -59,7 +59,7 @@
   <span></span>
   <span></span>
 
-<!-- planet -->
+  <!-- planet -->
   <figure>
     <div></div>
   </figure>
@@ -68,10 +68,19 @@
 
   <!-- cockpit overlay -->
   <div>
-    <header> <!-- top exterior ship -->
-      <!-- <h1>no man sky</h1> -->
-    </header> <!-- top exterior ship -->
+    <section>
 
+      <input type="checkbox" name="theme"> <label>
+        <span></span> </label>
+    </section>
+
+    <header> <!-- top exterior ship -->
+      <h1>Space hop</h1>
+
+
+
+    </header> <!-- top exterior ship -->
+    <aside></aside> <!-- windshield wipers -->
     <div></div> <!-- arching windshield structure support -->
     <img src="images/crack.png" alt=""> <!-- crack in the windshield -->
 
@@ -81,23 +90,25 @@
       <div> <!-- controlpanel backdrop -->
         <section> <!-- controlpanel items container -->
 
-          <button type="button"><!-- selfdestruct button -->
+          <label for="">
+            <input type="checkbox"><!-- selfdestruct button -->
             <div>&#9760;</div>
             <div></div>
-          </button><!-- selfdestruct button -->
+            <!-- selfdestruct button -->
+          </label>
 
           <div> <!-- speed handle container -->
             <input type="radio" name="speed" value="2"> <!-- speed handle -->
             <input type="radio" name="speed" value="1" checked> <!-- speed handle -->
           </div> <!-- speed handle container-->
 
-          
-          <aside>
+          <aside> <input type="range" name="steer" min="-90" max="90" value="0"><!-- steering wheel -->
             <div>
               <div></div>
               <div></div>
             </div>
-          </aside>
+          </aside> <!-- steering wheel -->
+
 
           <div> <!-- display unit -->
             <div>SPEED</div>
@@ -146,38 +157,28 @@
 </html>
 
 <script>
-  const body = document.body;
- 
-  const planet = document.querySelector('figure');
-  const speedButtons = document.querySelectorAll('input[name="speed"]');
-  
-  let rotation = 0;
-  let moveStep = 1;
+  // BRON: https://codepen.io/shooft/pen/LYaexbj?editors=1010
+  // ONDERSTAANDE CODE MAG JE GEBRUIKEN
+  // NIETS AANPASSEN
 
-  function updateSteering() {
-    body.style.setProperty('--steer', rotation + 'deg');
-    body.style.setProperty('--steer-n', (rotation / 100));
-    requestAnimationFrame(updateSteering);
+  const ranges = document.querySelectorAll('[type="range"]');
+
+  const updateRange = range => {
+    // the name of the custom property is the name of the input
+    const rangeName = range.name;
+    // the value of the custom property is the value of the input
+    const rangeValue = range.value;
+    // a custom property is set on the HTML element
+    document.documentElement.style.setProperty("--" + rangeName, rangeValue);
   }
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') rotation -= moveStep;
-    if (e.key === 'ArrowRight') rotation += moveStep;
-    rotation = Math.max(-60, Math.min(60, rotation));
+  ranges.forEach(range => {
+    // the custom property is set initially after loading the document
+    updateRange(range);
+
+    // the custom property is updated when the input is changed
+    range.oninput = () => {
+      updateRange(range)
+    };
   });
-
-  window.addEventListener('keyup', () => {
-    const center = setInterval(() => {
-      if (rotation > 0) rotation -= 1;
-      else if (rotation < 0) rotation += 1;
-      if (Math.abs(rotation) <= 1) {
-        rotation = 0;
-        clearInterval(center);
-      }
-    }, 20);
-  });
-
-  updateSteering();
-
- 
 </script>
