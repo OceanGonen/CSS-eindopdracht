@@ -14,8 +14,7 @@
 @font-face {
   font-family: 'SpaceFont'; 
   src: url('fonts/deltha/Deltha.otf') format('opentype'); 
-  font-weight: normal;
-  font-style: normal;
+ 
 }
 
 * {
@@ -286,8 +285,9 @@ section>div:first-child>section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4vw;
-  padding-top: 2vh;
+  flex-wrap: wrap;        
+  gap: clamp(1rem, 2vw, 4vw);   
+  padding-top: 1vh;
 
 }
 
@@ -354,6 +354,107 @@ body>div:first-of-type>div:first-of-type {
 
 
 /* *MARK: Header */
+
+
+header h1 i {
+  display: inline-block;
+  opacity: 0;
+  
+  transform: translateZ(500px) scaleY(5); 
+  filter: blur(15px);
+  
+  animation: warp-arrival 0.1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Sharpness & Readability Tweaks */
+header h1 i:not(:nth-of-type(6)) {
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 2px black, 0 0 5px rgba(255,255,255,0.3);
+  -webkit-font-smoothing: antialiased;
+}
+
+header h1 i:nth-of-type(1) { animation-delay: 0.1s; }
+header h1 i:nth-of-type(2) { animation-delay: 0.2s; }
+header h1 i:nth-of-type(3) { animation-delay: 0.3s; }
+header h1 i:nth-of-type(4) { animation-delay: 0.4s; }
+header h1 i:nth-of-type(5) { animation-delay: 0.5s; }
+header h1 i:nth-of-type(6) { animation-delay: 0.6s; }
+header h1 i:nth-of-type(7) { animation-delay: 0.7s; }
+header h1 i:nth-of-type(8) { animation-delay: 0.8s; }
+header h1 i:nth-of-type(9) { animation-delay: 0.9s; }
+
+@keyframes warp-arrival {
+  0% {
+    opacity: 0;
+    transform: translateZ(800px) scaleY(10) translateY(-100px);
+    filter: blur(20px) brightness(5); 
+  }
+  60% {
+    opacity: 1;
+    filter: blur(5px) brightness(2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scaleY(1) translateY(0);
+    filter: blur(0) brightness(1);
+  }
+}
+
+
+/* Container for the 'o' */
+header h1 i:nth-of-type(8) {
+  position: relative;
+  display: inline-block;
+  /* We need this to allow the moon to go behind the letter */
+  z-index: 1; 
+}
+
+/* The Horizontal Orbit Path (The Ring) */
+header h1 i:nth-of-type(8) b {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 15px; /* Squashed for that 3D horizontal look */
+  border: 1px solid rgba(255, 105, 180, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The Pink Moon */
+header h1 i:nth-of-type(8) u {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: #ff69b4;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #ff69b4;
+  display: block;
+  text-decoration: none;
+  
+  /* The Secret: Animate position, not rotation */
+  animation: moon-orbit 3s infinite linear;
+}
+
+@keyframes moon-orbit {
+  /* 0% to 49%: The front-side arc (Visible) */
+  0%   { transform: translate(20px, -50%); z-index: 2; }
+  25%  { transform: translate(-50%, 4px); z-index: 2; }
+  49%  { z-index: 2; } 
+
+  /* 50% to 99%: The back-side arc (Hidden) */
+  50%  { transform: translate(-27px, -50%); z-index: -1; }
+  75%  { transform: translate(-50%, -14px); z-index: -1; }
+  99%  { z-index: -1; } /* Still behind the letter right before the finish */
+
+  /* 100%: Reset to start */
+  100% { transform: translate(20px, -50%); z-index: 2; }
+}
 
 /* BRON: https://codepen.io/oliviale/pen/xxboXzo */
 /* De container van de hendel */
@@ -463,6 +564,24 @@ body:has(input[name="theme"]:checked)::after {
 
 
 
+div>div:has(p){
+ margin-top: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+body:has(input[name="theme"]:checked) p {
+  display: inline;
+  font-family: 'Courier New', Courier, monospace;
+  color: #00ff00;
+  
+}
+
+body:has(input[name="theme"]:not(:checked)) div>div:has(p){
+  margin: 0;
+}
+
 
 
 
@@ -503,8 +622,8 @@ body > div > aside::after {
 
 
 section > div:first-child > section > label:first-of-type {
-  width: 70px;
-  height: 50px;
+  width: clamp(35px, 7vw, 70px);
+  height: clamp(25px, 5vw, 50px);
   position: relative;
   display: block;
   cursor: pointer;
@@ -515,7 +634,7 @@ section > div:first-child > section > label:first-of-type div:first-of-type {
   width: 100%;
   height: 100%;
   background: var(--button-color);
-  font-size: 2rem;
+  font-size: clamp(1rem, 2.5vw, 2rem);
   color: var(--button-font-color);
   display: flex;
   align-items: center;
@@ -849,7 +968,8 @@ body:has(input[value="2"]:checked) section>div:first-child {
 body:has(input[value="2"]:checked) header,
 body:has(input[value="2"]:checked) section,
 body:has(input[value="2"]:checked) img,
-body:has(input[value="2"]:checked) body>div {
+body:has(input[value="2"]:checked) body>div,
+body:has(input[value="2"]:checked) body > div > aside::after  {
   animation: warp-shake 0.1s infinite 3s;
 }
 
