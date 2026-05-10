@@ -36,6 +36,7 @@ h1{
   text-align: center;
   font-family: "SpaceFont";
   padding: 0.2rem;
+  font-size: 2.5rem;
 }
 
 
@@ -223,7 +224,7 @@ body>div:first-of-type {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 1;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -565,21 +566,26 @@ body:has(input[name="theme"]:checked)::after {
 
 
 div>div:has(p){
- margin-top: 5%;
+  position: absolute;
+  top: 10vh;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-
+  z-index: 15;
+  pointer-events: none;
 }
+
 body:has(input[name="theme"]:checked) p {
   display: inline;
   font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
   color: #00ff00;
-  
+  text-shadow: 0 0 8px #00ff00;
 }
 
 body:has(input[name="theme"]:not(:checked)) div>div:has(p){
-  margin: 0;
+  display: none;
 }
 
 

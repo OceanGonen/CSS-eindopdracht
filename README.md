@@ -75,11 +75,16 @@ Als ik naar de week terugkijk, zie ik de kracht van CSS selectors. Het slim gebr
 Doel:
 Het realiseren van een methode vinden om planeten te genereren zonder gebruik te maken van JavaScript.
 
-Behaald:
 
+<<<<<<< HEAD
 Interactieve besturing: Ik heb een stuursysteem geïmplementeerd dat reageert op de muis en pijltoetsen. Via JavaScript wordt de rotatie berekend en als CSS-variabele (--steer) doorgegeven. Hierdoor bewegen de sterren en planeten (de sterren iets minder dan de planeten voor het dieptegevoel) en geven de cockpit het effect van naar links en rechts gaan.
 <img width="721" height="475" alt="image" src="https://github.com/user-attachments/assets/359809e4-68ec-4dae-a8bd-c25a1519d5dc" />
 <img width="530" height="36" alt="image" src="https://github.com/user-attachments/assets/fcab693e-cb27-479f-911e-0ef261972428" />
+=======
+<img width="721" height="475" alt="image" src="https://github.com/user-attachments/assets/359809e4-68ec-4dae-a8bd-c25a1519d5dc" />
+<img width="530" height="36" alt="image" src="https://github.com/user-attachments/assets/fcab693e-cb27-479f-911e-0ef261972428" />
+
+>>>>>>> 83608a8b5f2088bf99fdcf29615f1ac91e5abb48
 
 
 Ook heb ik een fuel gauge gemaakt met een visuele gag dat wanneer je erop klikt gaat de meting naald naar Empty. 
