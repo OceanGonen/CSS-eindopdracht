@@ -1,3 +1,7 @@
+html {
+  zoom: min(1, tan(atan2(100vw, 980px)));
+}
+
 :root {
   --frame-color: #555;
   --ship-color: #1a1a1a;
@@ -367,11 +371,9 @@ header h1 i {
   animation: warp-arrival 0.1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-/* Sharpness & Readability Tweaks */
 header h1 i:not(:nth-of-type(6)) {
   letter-spacing: 0.05em;
   text-shadow: 1px 1px 2px black, 0 0 5px rgba(255,255,255,0.3);
-  -webkit-font-smoothing: antialiased;
 }
 
 header h1 i:nth-of-type(1) { animation-delay: 0.1s; }
@@ -406,17 +408,16 @@ header h1 i:nth-of-type(9) { animation-delay: 0.9s; }
 header h1 i:nth-of-type(8) {
   position: relative;
   display: inline-block;
-  /* We need this to allow the moon to go behind the letter */
   z-index: 1; 
 }
 
-/* The Horizontal Orbit Path (The Ring) */
+/* Pink moon orbit*/
 header h1 i:nth-of-type(8) b {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 50px;
-  height: 15px; /* Squashed for that 3D horizontal look */
+  height: 15px; 
   border: 1px solid rgba(255, 105, 180, 0.4);
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -425,7 +426,7 @@ header h1 i:nth-of-type(8) b {
   z-index: 0;
 }
 
-/* The Pink Moon */
+/* Pink Moon */
 header h1 i:nth-of-type(8) u {
   position: absolute;
   top: 50%;
@@ -438,7 +439,6 @@ header h1 i:nth-of-type(8) u {
   display: block;
   text-decoration: none;
   
-  /* The Secret: Animate position, not rotation */
   animation: moon-orbit 3s infinite linear;
 }
 
@@ -451,9 +451,8 @@ header h1 i:nth-of-type(8) u {
   /* 50% to 99%: The back-side arc (Hidden) */
   50%  { transform: translate(-27px, -50%); z-index: -1; }
   75%  { transform: translate(-50%, -14px); z-index: -1; }
-  99%  { z-index: -1; } /* Still behind the letter right before the finish */
+  99%  { z-index: -1; }
 
-  /* 100%: Reset to start */
   100% { transform: translate(20px, -50%); z-index: 2; }
 }
 
